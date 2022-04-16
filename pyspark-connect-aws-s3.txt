@@ -1,0 +1,13 @@
+import configparser
+
+hadoop_conf = spark._jsc.hadoopConfiguration()
+
+hadoop_conf.set("fs.s3a.access.key","my_access_key")
+hadoop_conf.set("fs.s3a.secret.key","my_secret_key")
+hadoop_conf.set("fs.s3a.endpoint","test.aws.s3.endpoint")
+hadoop_conf.set("fs.s3a.connection.ssl.enabled","true")
+hadoop_conf.set("fs.s3a.path.style.access","true")
+
+customer_rdd=spark.read.text("s3a://test/customer_file.txt")
+
+print(customer_rdd.count())
